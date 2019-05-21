@@ -59,5 +59,6 @@ def register_flask_blueprints(app: Flask):
     from app.api import api as api_bp
     app.register_blueprint(api_bp, url_prefix=f'/api/{APP_VERSION}')
 
-    #from app.web import main as main_bp
-    #app.register_blueprint(main_bp)
+    # Web blueprint for html pages
+    from app.web import main as main_bp
+    app.register_blueprint(main_bp)
