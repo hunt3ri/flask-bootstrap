@@ -3,11 +3,15 @@ import os
 
 from logging.handlers import RotatingFileHandler
 
+from flasgger import Swagger
 from flask import Flask
 
 # Update with app specific versions as needed
 APP_NAME = 'FLASK-BOOTSTRAP'
 APP_VERSION = 'v1'
+
+# Init dependencies
+swagger = Swagger()
 
 
 def bootstrap_app() -> Flask:
@@ -19,6 +23,7 @@ def bootstrap_app() -> Flask:
     app.logger.info('Mapfish-PY Starting Up, Environment = {0}'.format(get_current_environment()))
 
     register_flask_blueprints(app)
+    init_swagger_docs(app)
 
     return app
 
@@ -62,3 +67,13 @@ def register_flask_blueprints(app: Flask):
     # Web blueprint for html pages
     from app.web import main as main_bp
     app.register_blueprint(main_bp)
+
+
+def init_swagger_docs(app: Flask):
+    """ Initialise the swagger API docs using the flasgger lib.  Docs are available at /apidocs """
+    app.config['SWAGGER'] = {
+        'title': f'{APP_NAME} API',
+        'uiversion': 3,
+        "version": f"{APP_VERSION}"
+    }
+    swagger.init_app(app)
