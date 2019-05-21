@@ -1,0 +1,35 @@
+# language setting
+language: python
+
+# version numbers test
+python:
+    - 3.7
+
+env:
+    global:
+        - secure: XkKg2faCLOFPjSHjZGtCEMCO0nQOwOJ7lRjmo5dB4vux/N8yCrgU17ZkzPk4xYpxKGLVLLNB0oKDu8X3N0FQ6ENdJWMWq4K6goGyGYMNFbeNZt0QJAhGptrb9R0NugP3y/SI2GfMZLaYJAe9wEeiWI/n3h+WtiyRGV+xD0UZp9fEESYG49sD7TOJPsoQKfAQViLxeGSrED6Ni520H9atUx38l3hbB/tNZi/wX2HKzlCoL581JZBfhGJ8c/RXzDk952crYoZPm9SBYp5LVN/euqorqDPTfyql7SLjnUcvSD5+9ijDU/uFU3zM6SGcMYcHUw3GUY+JwhayiSE5+SnA8Q==
+
+build:
+    ci:
+        # Required to display test results in Shippable GUI
+        - mkdir -p shippable/testresults
+        - mkdir -p shippable/codecoverage
+
+        # Install Python dependencies
+        - python --version
+        - pip install --upgrade pip
+        - pip install -r requirements.txt
+
+        # Run Python tests
+        - pytest ./tests --junitxml=./shippable/testresults/flask_bootstrap.xml
+
+    on_success:
+        # Run deploy script to manage deploy to appropriate environment
+        - . ./devops/ci/deploy.sh
+
+integrations:
+    notifications:
+        - integrationName: email
+          type: email
+          recipients:
+              - iain.hunter@outlook.com

@@ -1,0 +1,13 @@
+# Application
+.env
+logs
+
+# Buiild artifacts
+shippable/
+
+# Python artifacts
+__pycache__
+.venv
+
+# Pycharm
+.idea

@@ -1,0 +1,2 @@
+FLASK_APP=flask_bootstrap
+FLASK_BOOTSTRAP=Dev
