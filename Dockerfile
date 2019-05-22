@@ -1,16 +1,16 @@
-FROM python:3.7-slim-stretch
+FROM python:3.7
 
 RUN apt-get update
 RUN apt-get upgrade -y
 
 # App code will be deployed into /src within docker container
 WORKDIR /src
-
-# Add and install Python modules.  Note additional uwsgi install, required as not windows compatible
-ADD requirements.txt /src/requirements.txt
-RUN pip3 install --upgrade pip
-RUN pip3 install -r requirements.txt; pip3 install uwsgi
 ADD . /src
+
+# Add and install Python modules.  Note additional uwsgi install, required to make app windows compatible
+RUN pip install --upgrade pip
+RUN pip install pipenv; pip install uwsgi
+RUN pipenv install --system
 
 # Expose
 EXPOSE 8000
