@@ -5,6 +5,7 @@ from logging.handlers import RotatingFileHandler
 
 from flasgger import Swagger
 from flask import Flask
+from flask_cors import CORS
 
 # Update with app specific versions as needed
 APP_NAME = 'FLASK-BOOTSTRAP'
@@ -24,6 +25,9 @@ def bootstrap_app() -> Flask:
 
     register_flask_blueprints(app)
     init_swagger_docs(app)
+
+    # Allow cross-origin requests, and pass back any cookies
+    CORS(app, supports_credentials=True)
 
     return app
 
