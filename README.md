@@ -42,6 +42,5 @@ You should see the app running locally on port 8080 - [http://127.0.0.1:8080](ht
 
 ```.docker
 # Connect to the running container
-Connect to a container:
 docker exec -it <imageId> bash
 ```
