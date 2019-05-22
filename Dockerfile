@@ -12,7 +12,6 @@ RUN pip install --upgrade pip
 RUN pip install pipenv; pip install uwsgi
 RUN pipenv install --system
 
-
 # Expose
 EXPOSE 8000
 
