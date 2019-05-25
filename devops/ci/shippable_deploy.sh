@@ -14,5 +14,11 @@ VERSION=v.1.0.$BUILD_NUMBER-$BRANCH
 # Only deploy to Staging if we're on develop
 if [ $BRANCH == "develop" ]
     then
-        echo Please add necessary deploy scripts here
+        echo Please add necessary deploy scripts here to deploy to staging environment
+fi
+
+# Only deploy to Prod if we're on master
+if [ $BRANCH == "master" ]
+    then
+        echo Please add necessary deploy scripts here to deploy to prod environment
 fi
