@@ -10,7 +10,7 @@ You need to have at least Python 3.7 installed in your development environment.
 
 ### Dependencies 
 To install the required dependencies:
-```.env
+```.bash
 pip install pipenv
 pipenv install --dev
 ```
@@ -22,9 +22,15 @@ Flask-Bootstrap installs [python-dotenv](https://github.com/theskumar/python-dot
 
 ### Running
 To run ensure your virtual environment is running
-```.env
+```.bash
 pipenv shell
 flask run
+```
+
+### Tests
+To run all tests
+```bash
+pytest tests
 ```
 
 ### API Docs
