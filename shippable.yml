@@ -15,7 +15,7 @@ build:
         - python --version
         - pip install --upgrade pip
         - pip install pipenv
-        - pipenv install --system
+        - pipenv install --dev
 
         # Run Python tests
         - pytest --cov
