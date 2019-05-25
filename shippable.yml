@@ -17,6 +17,9 @@ build:
         - pip install pipenv
         - pipenv install --dev
 
+        # Run linter
+        - flake8 app
+
         # Run Python tests
         - pytest ./tests --junitxml=./shippable/testresults/flask_bootstrap.xml --cov=app --cov-report xml:./shippable/codecoverage/coverage.xml
 

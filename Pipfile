@@ -8,6 +8,7 @@ python-dotenv = "*"
 pytest = "*"
 pytest-cov = "*"
 black = "*"
+flake8 = "*"
 
 [packages]
 flask = "*"
