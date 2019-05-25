@@ -15,7 +15,7 @@ build:
         - python --version
         - pip install --upgrade pip
         - pip install pipenv
-        - pipenv install
+        - pipenv install --system
 
         # Run Python tests
         - pytest ./tests --junitxml=./shippable/testresults/flask_bootstrap.xml
