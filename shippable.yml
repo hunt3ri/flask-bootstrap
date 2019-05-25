@@ -3,7 +3,7 @@ language: python
 
 # version numbers test
 python:
-    - 3.7
+    - "3.7"
 
 build:
     ci:
@@ -14,6 +14,7 @@ build:
         # Install Python dependencies
         - python --version
         - pip install --upgrade pip
+        - pip install pipenv
         - pipenv install
 
         # Run Python tests
