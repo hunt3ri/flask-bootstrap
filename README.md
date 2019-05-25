@@ -1,4 +1,5 @@
 [![Run Status](https://api.shippable.com/projects/5ce50c5c09683700079dafa0/badge?branch=master)]()
+[![Coverage Badge](https://api.shippable.com/projects/5ce50c5c09683700079dafa0/coverageBadge?branch=master)]()
 
 # Flask Bootstrap
 This repo contains a skeleton flask project you can use to quickly bootstrap your projects. It's designed to be easily deployed to serverless environments or container clusters (see DevOps below)
