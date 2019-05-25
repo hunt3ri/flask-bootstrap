@@ -8,7 +8,7 @@ shippable/
 # Python artifacts
 __pycache__
 .venv
-.pytest
+.pytest_cache
 
 # Pycharm
 .idea
