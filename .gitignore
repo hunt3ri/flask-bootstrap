@@ -9,6 +9,7 @@ shippable/
 __pycache__
 .venv
 .pytest_cache
+.coverage
 
 # Pycharm
 .idea
