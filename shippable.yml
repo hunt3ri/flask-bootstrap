@@ -18,8 +18,7 @@ build:
         - pipenv install --dev
 
         # Run Python tests
-        - pytest --cov
-        #- pytest ./tests --junitxml=./shippable/testresults/flask_bootstrap.xml --cov --cov-report xml:./shippable/codecoverage/coverage.xml
+        - pytest ./tests --junitxml=./shippable/testresults/flask_bootstrap.xml --cov --cov-report xml:./shippable/codecoverage/coverage.xml
 
 
     on_success:
