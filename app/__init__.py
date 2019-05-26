@@ -6,12 +6,16 @@ from logging.handlers import RotatingFileHandler
 from flasgger import Swagger
 from flask import Flask
 from flask_cors import CORS
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
 
 # Update with app specific versions as needed
 APP_NAME = "FLASK-BOOTSTRAP"
 APP_VERSION = "v1"
 
 # Init dependencies
+db = SQLAlchemy()
+migrate = Migrate()
 swagger = Swagger()
 
 
@@ -24,6 +28,10 @@ def bootstrap_app() -> Flask:
     app.logger.info(
        f"{APP_NAME} Starting Up, Environment = {get_current_environment()}"
     )
+
+    # Initialise database and migrations
+    db.init_app(app)
+    migrate.init_app(app, db)
 
     register_flask_blueprints(app)
     init_swagger_docs(app)
@@ -90,3 +98,7 @@ def init_swagger_docs(app: Flask):
         "version": f"{APP_VERSION}",
     }
     swagger.init_app(app)
+
+
+# Import postgres models last so that db connection is initialised, ensures Flask-Migrate/Alembic can see db
+from app.models.database import *  # noqa
