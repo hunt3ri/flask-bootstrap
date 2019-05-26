@@ -1,6 +1,7 @@
 # Application
 .env
 logs
+flask_bootstrap.db
 
 # Buiild artifacts
 shippable/
