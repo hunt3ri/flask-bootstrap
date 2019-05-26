@@ -16,6 +16,7 @@ flasgger = "*"
 flask-cors = "*"
 flask-sqlalchemy = "*"
 flask-migrate = "*"
+schematics = "*"
 
 [requires]
 python_version = "3.7"
