@@ -6,12 +6,16 @@ from logging.handlers import RotatingFileHandler
 from flasgger import Swagger
 from flask import Flask
 from flask_cors import CORS
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
 
 # Update with app specific versions as needed
 APP_NAME = "FLASK-BOOTSTRAP"
 APP_VERSION = "v1"
 
 # Init dependencies
+db = SQLAlchemy()
+migrate = Migrate()
 swagger = Swagger()
 
 
@@ -24,6 +28,8 @@ def bootstrap_app() -> Flask:
     app.logger.info(
         "Mapfish-PY Starting Up, Environment = {0}".format(get_current_environment())
     )
+
+    db.init_app(app)
 
     register_flask_blueprints(app)
     init_swagger_docs(app)
