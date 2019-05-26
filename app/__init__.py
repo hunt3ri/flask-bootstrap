@@ -26,7 +26,7 @@ def bootstrap_app() -> Flask:
 
     initialise_logger(app)
     app.logger.info(
-        "Mapfish-PY Starting Up, Environment = {0}".format(get_current_environment())
+       f"{APP_NAME} Starting Up, Environment = {get_current_environment()}"
     )
 
     db.init_app(app)
