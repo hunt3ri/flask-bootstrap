@@ -29,7 +29,9 @@ def bootstrap_app() -> Flask:
        f"{APP_NAME} Starting Up, Environment = {get_current_environment()}"
     )
 
+    # Initialise database and migrations
     db.init_app(app)
+    migrate.init_app(app, db)
 
     register_flask_blueprints(app)
     init_swagger_docs(app)
