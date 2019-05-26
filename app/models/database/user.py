@@ -3,7 +3,8 @@ from app import db
 
 class User(db.Model):
     """ Models the users table """
-    __tablename__ = 'users'
+
+    __tablename__ = "users"
 
     id = db.Column(db.BigInteger, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
@@ -11,4 +12,4 @@ class User(db.Model):
     password_hash = db.Column(db.String(128))
 
     def __repr__(self):
-        return f'<User {self.username}>'
+        return f"<User {self.username}>"

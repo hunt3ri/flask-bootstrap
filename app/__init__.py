@@ -26,7 +26,7 @@ def bootstrap_app() -> Flask:
 
     initialise_logger(app)
     app.logger.info(
-       f"{APP_NAME} Starting Up, Environment = {get_current_environment()}"
+        f"{APP_NAME} Starting Up, Environment = {get_current_environment()}"
     )
 
     # Initialise database and migrations
@@ -101,4 +101,4 @@ def init_swagger_docs(app: Flask):
 
 
 # Import postgres models last so that db connection is initialised, ensures Flask-Migrate/Alembic can see db
-from app.models.database import *  #noqa
+from app.models.database import *  # noqa
