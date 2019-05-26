@@ -96,3 +96,7 @@ def init_swagger_docs(app: Flask):
         "version": f"{APP_VERSION}",
     }
     swagger.init_app(app)
+
+
+# Import postgres models last so that db connection is initialised, ensures Flask-Migrate/Alembic can see db
+from app.models.database import *  #noqa
