@@ -15,13 +15,18 @@ class UserDTO(Model):
     email = StringType(required=True)
     password = StringType()
 
-    def map_to_db_model(self, user: User):
+    def map_to_db_model(self, user: User = None) -> User:
         """ Map DTO to database representation """
+        if user is None:
+            user = User()
         user.email = self.email
-        user.username = self.username
+        user.first_name = self.first_name
+        user.last_name = self.last_name
+        return user
 
     def map_from_db_model(self, user: User):
         """ Map DB representation to DTO """
         self.id = user.id
-        self.username = user.username
+        self.first_name = user.first_name
+        self.last_name = user.last_name
         self.email = user.email

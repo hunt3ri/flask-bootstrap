@@ -2,6 +2,7 @@ from flask import jsonify, request, current_app
 
 from app.api import api
 from app.models.dtos.user_dto import UserDTO
+from app.services.user_service import UserService
 from app.services.utils import validate_dto, FlaskBootstrapError
 
 
@@ -47,7 +48,7 @@ def register_user():
     try:
         dto = UserDTO(request.get_json())
         validate_dto(dto)
-        return jsonify(dto.to_primitive()), 201
+        return UserService().register_user(dto), 201
     except FlaskBootstrapError as e:
         current_app.logger.error(e.message)
         return jsonify(e.error), e.status_code
