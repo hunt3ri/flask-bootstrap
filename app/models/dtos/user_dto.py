@@ -9,18 +9,25 @@ data_error = DataError  # Refer to dataerror to make it simpler to import into A
 
 class UserDTO(Model):
     """ Describes a User """
+
     id = IntType()
+    first_name = StringType(required=True, serialized_name="firstName")
+    last_name = StringType(required=True, serialized_name="lastName")
     email = StringType(required=True)
-    username = StringType(required=True)
     password = StringType()
 
-    def map_to_db_model(self, user: User):
+    def map_to_db_model(self, user: User = None) -> User:
         """ Map DTO to database representation """
+        if user is None:
+            user = User()
         user.email = self.email
-        user.username = self.username
+        user.first_name = self.first_name
+        user.last_name = self.last_name
+        return user
 
     def map_from_db_model(self, user: User):
         """ Map DB representation to DTO """
         self.id = user.id
-        self.username = user.username
+        self.first_name = user.first_name
+        self.last_name = user.last_name
         self.email = user.email
