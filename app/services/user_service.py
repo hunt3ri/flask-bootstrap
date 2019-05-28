@@ -10,4 +10,6 @@ class UserService:
         user = dto.map_to_db_model()
         user.password_hash = generate_password_hash(dto.password)
         user.insert()
-        return dto.map_from_db_model(user)
+
+        dto.map_from_db_model(user)
+        return dto

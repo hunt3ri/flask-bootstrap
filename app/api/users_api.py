@@ -48,7 +48,8 @@ def register_user():
     try:
         dto = UserDTO(request.get_json())
         validate_dto(dto)
-        return UserService().register_user(dto), 201
+        registered_user = UserService().register_user(dto)
+        return jsonify(registered_user.to_primitive()), 201
     except FlaskBootstrapError as e:
         current_app.logger.error(e.message)
         return jsonify(e.error), e.status_code
