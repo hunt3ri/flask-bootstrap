@@ -54,6 +54,6 @@ def register_user():
         current_app.logger.error(e.message)
         return jsonify(e.error), e.status_code
     except Exception as e:
-        error_message = f'Unhandled exception: {str(e)}'
+        error_message = f"Unhandled exception: {str(e)}"
         current_app.logger.critical(error_message)
         return jsonify({"errorMessage": error_message}), 500

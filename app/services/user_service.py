@@ -4,7 +4,6 @@ from app.models.dtos.user_dto import UserDTO
 
 
 class UserService:
-
     def register_user(self, dto: UserDTO) -> UserDTO:
         """ Register a new user """
         user = dto.map_to_db_model()

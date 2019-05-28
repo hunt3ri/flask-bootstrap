@@ -26,7 +26,7 @@ def bootstrap_app() -> Flask:
 
     initialise_logger(app)
     app.logger.info(
-       f"{APP_NAME} Starting Up, Environment = {get_current_environment()}"
+        f"{APP_NAME} Starting Up, Environment = {get_current_environment()}"
     )
 
     # Initialise database and migrations

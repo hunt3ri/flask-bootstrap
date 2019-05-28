@@ -26,7 +26,9 @@ class User(db.Model):
             db.session.commit()
         except exc.IntegrityError as e:
             db.session.rollback()  # After error MUST rollback session avoid session flush errors
-            raise FlaskBootstrapError(f'Integrity error saving user: {self}, error {str(e)}')
+            raise FlaskBootstrapError(
+                f"Integrity error saving user: {self}, error {str(e)}"
+            )
 
     def __repr__(self):
         return f"<User {self.first_name} {self.last_name}>"

@@ -9,9 +9,10 @@ data_error = DataError  # Refer to dataerror to make it simpler to import into A
 
 class UserDTO(Model):
     """ Describes a User """
+
     id = IntType()
-    first_name = StringType(required=True, serialized_name='firstName')
-    last_name = StringType(required=True, serialized_name='lastName')
+    first_name = StringType(required=True, serialized_name="firstName")
+    last_name = StringType(required=True, serialized_name="lastName")
     email = StringType(required=True)
     password = StringType()
 
