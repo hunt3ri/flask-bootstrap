@@ -1,8 +1,8 @@
-from flask import jsonify, request
+from flask import jsonify, request, current_app
 
 from app.api import api
 from app.models.dtos.user_dto import UserDTO
-from app.services.utils import validate_dto, FlaskBootstrapError, unhandled_exception, DataError
+from app.services.utils import validate_dto, FlaskBootstrapError
 
 
 @api.route("/user/register", methods=["POST"])
@@ -47,10 +47,12 @@ def register_user():
     try:
         dto = UserDTO(request.get_json())
         validate_dto(dto)
-        # TODO work on unhandled
         iain = 1 / 0
         return jsonify(dto.to_primitive()), 201
     except FlaskBootstrapError as e:
+        current_app.logger.error(e.message)
         return jsonify(e.error), e.status_code
     except Exception as e:
-        return unhandled_exception(e)
+        error_message = f'Unhandled exception: {str(e)}'
+        current_app.logger.critical(error_message)
+        return jsonify({"errorMessage": error_message}), 500

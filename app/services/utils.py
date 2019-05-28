@@ -11,10 +11,10 @@ class FlaskBootstrapError(Exception):
     :param status_code: Set the HTTP status code you want the API to return
     """
     def __init__(self, message: str, status_code: int = 500, error_dict: dict = None):
-        if current_app:
-            current_app.logger.error(message)
+        self.message = message
+        self.status_code = status_code
 
-        # Error object that can be serialized from the API
+        # Error dict that can be serialized from the API
         self.error = {
             "errorMessage": message
         }
@@ -22,7 +22,7 @@ class FlaskBootstrapError(Exception):
         if error_dict:
             self.error.update(error_dict)  # Append error dict to error if available
 
-        self.status_code = status_code
+        current_app.logger.error(self.message)
 
 
 def validate_dto(dto: Model):
@@ -31,10 +31,3 @@ def validate_dto(dto: Model):
         dto.validate()
     except DataError as e:
         raise FlaskBootstrapError(f"Error validating {type(dto).__name__}", 400, e.to_primitive())
-
-
-def unhandled_exception(error: Exception):
-    """ Helper function to handle unhandled exceptions """
-    error_message = f'Unhandled exception: {str(error)}'
-    current_app.logger.critical(error_message)
-    return {"errorMessage": error_message}, 500
