@@ -4,7 +4,7 @@ from app.api import api
 from app.models.dtos.user_dto import UserDTO
 from app.services.auth_service import basic_auth
 from app.services.user_service import UserService
-from app.services.utils import validate_dto, FlaskBootstrapError
+from app.services.utils import validate_dto, FlaskBootstrapError, get_logged_in_user
 
 
 @api.route("/user/register", methods=["POST"])
@@ -85,11 +85,8 @@ def login_user():
         description: Internal Server Error
     """
     try:
-        pass
-        # dto = UserDTO(request.get_json())
-        # validate_dto(dto)
-        # registered_user = UserService().register_user(dto)
-        # return jsonify(registered_user.to_primitive()), 201
+        logged_in_user = get_logged_in_user()
+        return jsonify(logged_in_user.to_primitive()), 200
     except FlaskBootstrapError as e:
         current_app.logger.error(e.message)
         return jsonify(e.error), e.status_code

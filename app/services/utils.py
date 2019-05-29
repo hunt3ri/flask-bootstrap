@@ -1,4 +1,4 @@
-from flask import current_app
+from flask import current_app, g
 from schematics import Model
 from schematics.exceptions import DataError
 
@@ -32,3 +32,12 @@ def validate_dto(dto: Model):
         raise FlaskBootstrapError(
             f"Error validating {type(dto).__name__}", 400, e.to_primitive()
         )
+
+
+def get_logged_in_user():
+    """ Returns the currently logged in user from the session """
+    try:
+        return g.authenticated_user
+    except AttributeError:
+        # If we don't have the authenticated user we have set it now
+        raise FlaskBootstrapError('No authenticated user in global session')
