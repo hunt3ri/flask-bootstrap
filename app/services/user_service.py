@@ -1,5 +1,3 @@
-
-
 from app.models.dtos.user_dto import UserDTO
 from app.models.database.user import User
 from app.services.auth_service import get_password_hash

@@ -40,4 +40,4 @@ def get_logged_in_user():
         return g.authenticated_user
     except AttributeError:
         # If we don't have the authenticated user we have set it now
-        raise FlaskBootstrapError('No authenticated user in global session')
+        raise FlaskBootstrapError("No authenticated user in global session")

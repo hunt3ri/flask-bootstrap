@@ -15,7 +15,9 @@ class UserDTO(Model):
     last_name = StringType(required=True, serialized_name="lastName")
     email = StringType(required=True)
     password = StringType(serialize_when_none=False)
-    session_token = StringType(serialized_name='sessionToken', serialize_when_none=False)
+    session_token = StringType(
+        serialized_name="sessionToken", serialize_when_none=False
+    )
 
     def map_to_db_model(self, user: User = None) -> User:
         """ Map DTO to database representation """

@@ -30,4 +30,7 @@ def set_auth_details(user):
     g.authenticated_user = dto
 
 
-from app.services.user_service import UserService, UserDTO  # noqa avoid circular dependency
+from app.services.user_service import (
+    UserService,
+    UserDTO,
+)  # noqa avoid circular dependency
