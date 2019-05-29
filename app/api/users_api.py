@@ -2,6 +2,7 @@ from flask import jsonify, request, current_app
 
 from app.api import api
 from app.models.dtos.user_dto import UserDTO
+from app.services.auth_service import basic_auth
 from app.services.user_service import UserService
 from app.services.utils import validate_dto, FlaskBootstrapError
 
@@ -50,6 +51,45 @@ def register_user():
         validate_dto(dto)
         registered_user = UserService().register_user(dto)
         return jsonify(registered_user.to_primitive()), 201
+    except FlaskBootstrapError as e:
+        current_app.logger.error(e.message)
+        return jsonify(e.error), e.status_code
+    except Exception as e:
+        error_message = f"Unhandled exception: {str(e)}"
+        current_app.logger.critical(error_message)
+        return jsonify({"errorMessage": error_message}), 500
+
+
+@api.route("/user/login", methods=["PUT"])
+@basic_auth.login_required
+def login_user():
+    """
+    Login User
+    ---
+    tags:
+      - user
+    produces:
+      - application/json
+    parameters:
+      - in: header
+        name: Authorization
+        description: Base64 encoded user password
+        required: true
+        type: string
+    responses:
+      200:
+        description: Login Successful
+      401:
+        description: Unauthorized, credentials are invalid
+      500:
+        description: Internal Server Error
+    """
+    try:
+        pass
+        # dto = UserDTO(request.get_json())
+        # validate_dto(dto)
+        # registered_user = UserService().register_user(dto)
+        # return jsonify(registered_user.to_primitive()), 201
     except FlaskBootstrapError as e:
         current_app.logger.error(e.message)
         return jsonify(e.error), e.status_code

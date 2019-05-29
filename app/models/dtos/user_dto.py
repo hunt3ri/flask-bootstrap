@@ -25,9 +25,13 @@ class UserDTO(Model):
         user.last_name = self.last_name
         return user
 
-    def map_from_db_model(self, user: User):
+    def map_from_db_model(self, user: User) -> "UserDTO":
         """ Map DB representation to DTO """
         self.id = user.id
         self.first_name = user.first_name
         self.last_name = user.last_name
         self.email = user.email
+        return self
+
+    def __repr__(self):
+        return f"<UserDTO {self.first_name} {self.last_name}>"

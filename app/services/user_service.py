@@ -1,6 +1,7 @@
 from werkzeug.security import generate_password_hash
 
 from app.models.dtos.user_dto import UserDTO
+from app.models.database.user import User
 
 
 class UserService:
@@ -11,4 +12,10 @@ class UserService:
         user.insert()
 
         dto.map_from_db_model(user)
+        return dto
+
+    def get_user_by_email(self, email: str) -> UserDTO:
+        """ Get user matching email address """
+        user = User().get_by_email(email)
+        dto = UserDTO().map_from_db_model(user)
         return dto

@@ -30,5 +30,10 @@ class User(db.Model):
                 f"Integrity error saving user: {self}, error {str(e)}"
             )
 
+    def get_by_email(self, email: str) -> "User":
+        """ Return db object or none if no match """
+        user = User.query.filter_by(email=email).first_or_404()
+        return user
+
     def __repr__(self):
         return f"<User {self.first_name} {self.last_name}>"

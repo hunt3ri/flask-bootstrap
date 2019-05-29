@@ -17,6 +17,7 @@ flask-cors = "*"
 flask-sqlalchemy = "*"
 flask-migrate = "*"
 schematics = "*"
+flask-httpauth = "*"
 
 [requires]
 python_version = "3.7"
