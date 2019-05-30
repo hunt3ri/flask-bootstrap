@@ -85,6 +85,7 @@ def init_db(app: Flask):
         return  # Separate DB initialised for testing
 
     with app.app_context():
+        app.logger.info('Updating database with latest migrations')
         upgrade()
 
 
