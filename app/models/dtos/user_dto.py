@@ -39,7 +39,6 @@ class UserDTO(Model):
         self.first_name = user.first_name
         self.last_name = user.last_name
         self.email = user.email
-        self.password = user.password_hash
         return self
 
     def __repr__(self):
