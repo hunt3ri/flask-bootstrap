@@ -18,6 +18,7 @@ flask-sqlalchemy = "*"
 flask-migrate = "*"
 schematics = "*"
 flask-httpauth = "*"
+pyjwt = "*"
 
 [requires]
 python_version = "3.7"
