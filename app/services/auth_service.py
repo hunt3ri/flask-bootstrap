@@ -10,7 +10,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from app.models.dtos.user_dto import UserDTO, JWTSessionUser
 
 basic_auth = HTTPBasicAuth()
-token_auth = HTTPTokenAuth('Bearer')
+token_auth = HTTPTokenAuth("Bearer")
 
 # Number of seconds before session token expires
 SESSION_TIMEOUT = 600
@@ -33,15 +33,15 @@ def verify_credentials(username: str, password: str) -> bool:
 def verify_token(token: str) -> bool:
     """ Verifies that the session token is valid """
     try:
-        payload = jwt.decode(token, key=current_app.secret_key, algorithms=['HS256'])
+        payload = jwt.decode(token, key=current_app.secret_key, algorithms=["HS256"])
         session_user = JWTSessionUser(payload)
         set_session_user(session_user)
         return True
     except ExpiredSignature:
-        current_app.logger.warn('Expired signature')
+        current_app.logger.warn("Expired signature")
         return False
     except Exception as e:
-        current_app.logger.error(f'Unable to decode token, error: {str(e)}')
+        current_app.logger.error(f"Unable to decode token, error: {str(e)}")
         return False
 
 
@@ -64,7 +64,11 @@ def get_session_token(session_user: JWTSessionUser):
     """ Generate a JWT to represent the user """
     # NOTE this can be customized as needed, see
     # https://blog.miguelgrinberg.com/post/json-web-tokens-with-public-key-signatures
-    token = jwt.encode(payload=session_user.to_primitive(), key=current_app.secret_key, algorithm='HS256').decode('utf-8')
+    token = jwt.encode(
+        payload=session_user.to_primitive(),
+        key=current_app.secret_key,
+        algorithm="HS256",
+    ).decode("utf-8")
     return token
 
 

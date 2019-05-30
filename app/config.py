@@ -8,7 +8,7 @@ class EnvironmentConfig:
     """ Environment Config contains values for the Dev, Test, Prod environments the app runs on. """
 
     LOG_LEVEL = logging.DEBUG
-    SECRET_KEY = os.getenv('FLASK_SECRET')  # Used to generate entropy in tokens etc
+    SECRET_KEY = os.getenv("FLASK_SECRET")  # Used to generate entropy in tokens etc
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         "DATABASE_URL"
     ) or "sqlite:///" + os.path.join(basedir, "flask_bootstrap.db")

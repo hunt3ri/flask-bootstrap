@@ -9,6 +9,7 @@ data_error = DataError  # Refer to dataerror to make it simpler to import into A
 
 class JWTSessionUser(Model):
     """ A simplified user object for storing in the session and encoding in the JWT """
+
     id = IntType()
     first_name = StringType(required=True, serialized_name="firstName")
     session_token = StringType(
