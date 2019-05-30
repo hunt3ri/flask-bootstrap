@@ -1,9 +1,8 @@
-import uuid
 from app.models.dtos.user_dto import UserDTO
+from tests.integration.helpers import generate_valid_user
 
 
 class TestUsersAPI:
-
     def test_register_user_api_returns_400_if_mandatory_fields_missing(self, client):
         # Arrange
         dto = UserDTO()
@@ -15,19 +14,12 @@ class TestUsersAPI:
         # Assert
         assert response.status_code == 400
 
-
     def test_valid_user_is_successfully_registered(self, client):
         # Arrange
-        unique_name = str(uuid.uuid4())
-
-        dto = UserDTO()
-        dto.first_name = "Iain"
-        dto.last_name = "Hunter"
-        dto.email = f"{unique_name}@test.com"
-        dto.password = "secret"
+        user = generate_valid_user()
 
         # Act
-        response = client.post("/api/v1/user/register", json=dto.to_primitive())
+        response = client.post("/api/v1/user/register", json=user.to_primitive())
 
         registered_user = UserDTO(response.json)
 
