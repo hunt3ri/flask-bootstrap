@@ -1,5 +1,4 @@
 from schematics import Model
-from schematics.exceptions import DataError
 from schematics.types import IntType, StringType, FloatType
 
 from app.models.database.user import User
