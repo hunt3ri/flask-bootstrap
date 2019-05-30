@@ -6,7 +6,7 @@ from logging.handlers import RotatingFileHandler
 from flasgger import Swagger
 from flask import Flask
 from flask_cors import CORS
-from flask_migrate import Migrate
+from flask_migrate import Migrate, upgrade
 from flask_sqlalchemy import SQLAlchemy
 
 # Update with app specific versions as needed
@@ -19,10 +19,10 @@ migrate = Migrate()
 swagger = Swagger()
 
 
-def bootstrap_app() -> Flask:
+def bootstrap_app(env: str = None) -> Flask:
     """ Bootstrap function to initialise the Flask app and config """
     app = Flask(__name__)
-    set_config(app)
+    set_config(app, env)
 
     initialise_logger(app)
     app.logger.info(
@@ -32,6 +32,7 @@ def bootstrap_app() -> Flask:
     # Initialise database and migrations
     db.init_app(app)
     migrate.init_app(app, db)
+    init_db(app)
 
     register_flask_blueprints(app)
     init_swagger_docs(app)
@@ -42,9 +43,10 @@ def bootstrap_app() -> Flask:
     return app
 
 
-def set_config(app: Flask):
+def set_config(app: Flask, env: str):
     """ Sets the config for the current environment """
-    env = get_current_environment()
+    if env is None:
+        env = get_current_environment()
     app.config.from_object("app.config.{0}Config".format(env))
 
 
@@ -75,6 +77,15 @@ def initialise_logger(app: Flask):
 
     app.logger.addHandler(file_handler)
     app.logger.setLevel(log_level)
+
+
+def init_db(app: Flask):
+    """ Ensures latest db migrations are run against db prior to startup """
+    if app.testing:
+        return  # Separate DB initialised for testing
+
+    with app.app_context():
+        upgrade()
 
 
 def register_flask_blueprints(app: Flask):

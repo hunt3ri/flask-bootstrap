@@ -4,8 +4,6 @@ from schematics.types import IntType, StringType, FloatType
 
 from app.models.database.user import User
 
-data_error = DataError  # Refer to dataerror to make it simpler to import into API
-
 
 class JWTSessionUser(Model):
     """ A simplified user object for storing in the session and encoding in the JWT """
