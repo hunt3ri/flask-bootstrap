@@ -13,3 +13,6 @@ __pycache__
 
 # Pycharm
 .idea
+
+# Sqlite
+*.db
