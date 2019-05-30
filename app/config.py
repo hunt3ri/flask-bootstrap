@@ -21,6 +21,17 @@ class ProdConfig(EnvironmentConfig):
     LOG_DIR = "/var/log/flask-bootstrap"
 
 
+class TestConfig(EnvironmentConfig):
+    """ Config for unit testing """
+
+    LOG_DIR = "logs"
+    SECRET_KEY = "forTestingOnly"
+    SQLALCHEMY_DATABASE_URI = os.environ.get(
+        "DATABASE_URL"
+    ) or "sqlite:///" + os.path.join(basedir, "test_bootstrap.db")
+    TESTING = True
+
+
 class DevConfig(EnvironmentConfig):
     """ Config for Development environment """
 
