@@ -23,6 +23,7 @@ class ProdConfig(EnvironmentConfig):
 
 class TestConfig(EnvironmentConfig):
     """ Config for unit testing """
+
     LOG_DIR = "logs"
     SECRET_KEY = "forTestingOnly"
     SQLALCHEMY_DATABASE_URI = os.environ.get(
