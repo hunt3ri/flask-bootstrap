@@ -1,7 +1,7 @@
 import os
 import pytest
 
-from flask_migrate import upgrade
+from flask_migrate import upgrade, downgrade
 
 from app import bootstrap_app
 
@@ -16,8 +16,11 @@ def app():
     migrations_dir = os.path.join(tests_dir, "..", "migrations")
 
     with app.app_context():
+        #downgrade(directory=migrations_dir)
         upgrade(directory=migrations_dir)
     yield app
+
+    iain = 1
 
 
 @pytest.fixture()
