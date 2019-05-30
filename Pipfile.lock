@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "b127472396c9f6604c63459132b28d33f9897d7badf6793beafb57a338750890"
+            "sha256": "44ccb598719c0e5b4580ecf4acdd6132e251256c068f7358313e48578efdb7d9"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -150,6 +150,14 @@
                 "sha256:88a1051873018da288eee8538d476dffe1262495144b33ecb586c4ab266bb8d4"
             ],
             "version": "==0.8.4"
+        },
+        "pyjwt": {
+            "hashes": [
+                "sha256:5c6eca3c2940464d106b99ba83b00c6add741c9becaec087fb7ccdefea71350e",
+                "sha256:8d59a976fb773f3e6a39c85636357c4f0e242707394cadadd9814f5cbaa20e96"
+            ],
+            "index": "pypi",
+            "version": "==1.7.1"
         },
         "pyrsistent": {
             "hashes": [
@@ -311,10 +319,10 @@
         },
         "importlib-metadata": {
             "hashes": [
-                "sha256:027cfc6524613de726789072f95d2e4cc64dd1dee8096d42d13f2ead5bd302f5",
-                "sha256:0d05199e1f0b1a8707a1b9c46476d4a49807fb56cb1b0737db1d37feb42fe31d"
+                "sha256:a9f185022cfa69e9ca5f7eabfd5a58b689894cb78a11e3c8c89398a8ccbb8e7f",
+                "sha256:df1403cd3aebeb2b1dcd3515ca062eecb5bd3ea7611f18cba81130c68707e879"
             ],
-            "version": "==0.15"
+            "version": "==0.17"
         },
         "mccabe": {
             "hashes": [

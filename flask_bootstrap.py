@@ -1,8 +1,16 @@
+import os
+import warnings
+
 from base64 import b64encode
 
 import click
 
 from app import bootstrap_app, db
+
+# Warn if any of required environment vars have not been set
+for var in ["FLASK_SECRET"]:
+    if not os.getenv(var):
+        warnings.warn(f"{var} environment variable must be set")
 
 app = bootstrap_app()  # Initialise the Flask app
 
