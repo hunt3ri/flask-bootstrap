@@ -1,10 +1,20 @@
 from schematics import Model
 from schematics.exceptions import DataError
-from schematics.types import IntType, StringType
+from schematics.types import IntType, StringType, FloatType
 
 from app.models.database.user import User
 
 data_error = DataError  # Refer to dataerror to make it simpler to import into API
+
+
+class JWTSessionUser(Model):
+    """ A simplified user object for storing in the session and encoding in the JWT """
+    id = IntType()
+    first_name = StringType(required=True, serialized_name="firstName")
+    session_token = StringType(
+        serialized_name="sessionToken", serialize_when_none=False
+    )
+    exp = FloatType()
 
 
 class UserDTO(Model):
@@ -15,9 +25,6 @@ class UserDTO(Model):
     last_name = StringType(required=True, serialized_name="lastName")
     email = StringType(required=True)
     password = StringType(serialize_when_none=False)
-    session_token = StringType(
-        serialized_name="sessionToken", serialize_when_none=False
-    )
 
     def map_to_db_model(self, user: User = None) -> User:
         """ Map DTO to database representation """
