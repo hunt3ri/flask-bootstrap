@@ -18,4 +18,4 @@ class UserService:
         return User().get_by_email(email)
 
 
-from app.services.auth_service import get_password_hash  #noqa  avoid circular reference
+from app.services.auth_service import get_password_hash  # noqa  avoid circular reference
