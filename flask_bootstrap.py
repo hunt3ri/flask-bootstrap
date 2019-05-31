@@ -40,10 +40,10 @@ def gen_basic_auth(username, password):
     Or to run with options:  flask gen-basic-auth --username abi --password pass123
     """
     print('Generating Base64 encoded Basic Authentication token copy and paste to Swagger...')
-    auth_details = f'{username}:{password}'.encode('ascii')
+    auth_details = f'{username}:{password}'.encode('utf-8')
 
     base64string = b64encode(auth_details)
-    print(f"Basic {base64string.decode('ascii')}")
+    print(f"Basic {base64string.decode('utf-8')}")
 
 
 @app.cli.command()
