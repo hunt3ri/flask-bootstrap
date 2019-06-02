@@ -1,10 +1,7 @@
 from schematics import Model
-from schematics.exceptions import DataError
 from schematics.types import IntType, StringType, FloatType
 
 from app.models.database.user import User
-
-data_error = DataError  # Refer to dataerror to make it simpler to import into API
 
 
 class JWTSessionUser(Model):
@@ -42,7 +39,6 @@ class UserDTO(Model):
         self.first_name = user.first_name
         self.last_name = user.last_name
         self.email = user.email
-        self.password = user.password_hash
         return self
 
     def __repr__(self):
