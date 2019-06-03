@@ -6,14 +6,16 @@ Currently we have two branches:
 [![Run Status](https://api.shippable.com/projects/5ce50c5c09683700079dafa0/badge?branch=master)]()
 [![Coverage Badge](https://api.shippable.com/projects/5ce50c5c09683700079dafa0/coverageBadge?branch=master)]()
 
-Simple Flask App with Restful API documented by Swagger
+Simple Flask App with Restful API documented by [Swagger](https://github.com/rochacbruno/flasgger)
 
 ### flask-bootstrap-sqlite
 
 [![Run Status](https://api.shippable.com/projects/5ce50c5c09683700079dafa0/badge?branch=flask-bootstrap-sqlite)](https://app.shippable.com/github/hunt3ri/flask-bootstrap/dashboard) 
 [![Coverage Badge](https://api.shippable.com/projects/5ce50c5c09683700079dafa0/coverageBadge?branch=flask-bootstrap-sqlite)](https://app.shippable.com/github/hunt3ri/flask-bootstrap/dashboard)
 
-Builds on the simple app in master, adds a SQLite DB, user registration and authorisation
+Builds on the simple app in master, adds a SQLite DB, with user registration and authorisation.
+  
+JSON parsing and validating is handled by [Schematics](https://schematics.readthedocs.io/en/latest/) ORM is [SqlAlchemy](https://www.sqlalchemy.org/). DB migrations handled by [Flask-Migrate](https://flask-migrate.readthedocs.io/en/latest/).  Authorisation handled by [Flask-HTTPAuth](https://flask-httpauth.readthedocs.io/en/latest/) and [PyJWT](https://pyjwt.readthedocs.io/en/latest/)
 
 ## Installing
 ### Python 3.7+
@@ -69,4 +71,7 @@ docker exec -it <imageId> bash
 ```
 
 ### CI
-Flask-Bootstrap CI is run by [Shippable](https://www.shippable.com/). New CI scripts can be added within the ```devops``` dir 
+Flask-Bootstrap CI is run by [Shippable](https://www.shippable.com/). New CI scripts can be added within the ```devops``` dir
+
+## Thanks
+This work in this repo has been influenced by Miguel Grinberg, if you are learning flask check out his [Mega Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
