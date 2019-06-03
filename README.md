@@ -35,6 +35,11 @@ Note the app uses [pre-commit](https://pre-commit.com/) to ensure we automatical
 ### Create a .env file
 Flask-Bootstrap installs [python-dotenv](https://github.com/theskumar/python-dotenv) to manage local environment variables it is strongly advised to create a ```.env``` file in the root of your project to store all environment variables.
 
+Ensure you set the following (showing sample values):
+```
+FLASK_SECRET=secretkeyhere [Creates Entropy for tokens etc]
+````   
+
 ### Running
 To run ensure your virtual environment is running
 ```.bash
