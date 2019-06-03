@@ -109,7 +109,7 @@ def get_user(user_id: int):
     parameters:
       - in: header
         name: Authorization
-        description: Base64 encoded user password
+        description: Base64 encoded bearer token
         required: true
         type: string
       - in: path
@@ -126,8 +126,8 @@ def get_user(user_id: int):
         description: Internal Server Error
     """
     try:
-        logged_in_user = get_logged_in_user()
-        return jsonify(logged_in_user.to_primitive()), 200
+        user = UserService().get_user_by_id(user_id)
+        return jsonify(user.to_primitive()), 200
     except FlaskBootstrapError as e:
         current_app.logger.error(e.message)
         return jsonify(e.error), e.status_code

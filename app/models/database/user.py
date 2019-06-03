@@ -31,8 +31,13 @@ class User(db.Model):
             )
 
     def get_by_email(self, email: str) -> "User":
-        """ Return db object or none if no match """
+        """ Return user matching email or raise 404 """
         user = User.query.filter_by(email=email).first_or_404()
+        return user
+    
+    def get_by_id(self, id: int) -> "User":
+        """ Return user matching id or raise 404 """
+        user = User.query.filter_by(id=id).first_or_404()
         return user
 
     def __repr__(self):
