@@ -50,7 +50,7 @@ def get_password_hash(password: str):
     return generate_password_hash(password)
 
 
-def set_auth_details(user_dto: UserDTO):
+def set_auth_details(user_dto: UserDTO) -> JWTSessionUser:
     """ Set user details into global request scope for later retrieval """
     session_user = JWTSessionUser()
     session_user.id = user_dto.id
@@ -58,6 +58,7 @@ def set_auth_details(user_dto: UserDTO):
     session_user.exp = time() + SESSION_TIMEOUT
     session_user.session_token = get_session_token(session_user)
     set_session_user(session_user)
+    return session_user
 
 
 def get_session_token(session_user: JWTSessionUser):

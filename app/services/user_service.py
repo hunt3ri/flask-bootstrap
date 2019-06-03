@@ -17,5 +17,11 @@ class UserService:
         """ Get user matching email address """
         return User().get_by_email(email)
 
+    def get_user_by_id(self, user_id: int) -> UserDTO:
+        """ Get user matching id """
+        user = User().get_by_id(user_id)
+        dto = UserDTO().map_from_db_model(user)
+        return dto
+
 
 from app.services.auth_service import get_password_hash  # noqa  avoid circular reference

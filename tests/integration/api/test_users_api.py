@@ -2,6 +2,7 @@ from base64 import b64encode
 
 from app.models.dtos.user_dto import UserDTO
 from app.services.user_service import UserService
+from app.services.auth_service import set_auth_details
 from tests.integration.helpers import generate_valid_user
 
 
@@ -44,6 +45,23 @@ class TestUsersAPI:
 
             # Act
             response = client.put("/api/v1/user/login", headers={"Authorization": auth_header})
+
+            # Assert
+            assert response.status_code == 200
+
+    def test_get_user_api_returns_user(self, app, client):
+        with app.app_context():
+
+            # Arrange
+            user = generate_valid_user()
+            reg_user = UserService().register_user(user)
+            session_user = set_auth_details(reg_user)
+
+            # Set up bearer header
+            auth_header = f"Bearer {session_user.session_token}"
+
+            # Act
+            response = client.get(f"/api/v1/user/{reg_user.id}", headers={"Authorization": auth_header})
 
             # Assert
             assert response.status_code == 200
