@@ -1,8 +1,16 @@
-[![Run Status](https://api.shippable.com/projects/5ce50c5c09683700079dafa0/badge?branch=master)]()
-[![Coverage Badge](https://api.shippable.com/projects/5ce50c5c09683700079dafa0/coverageBadge?branch=master)]()
-
 # Flask Bootstrap
 This repo contains a skeleton flask project you can use to quickly bootstrap your projects. It's designed to be easily deployed to serverless environments or container clusters (see DevOps below)
+
+Currently we have two branches:
+## master
+[![Run Status](https://api.shippable.com/projects/5ce50c5c09683700079dafa0/badge?branch=master)]()
+[![Coverage Badge](https://api.shippable.com/projects/5ce50c5c09683700079dafa0/coverageBadge?branch=master)]()
+Simple Flask App with Restful API documented by Swagger
+
+## flask-bootstrap-sqlite
+[![Run Status](https://api.shippable.com/projects/5ce50c5c09683700079dafa0/badge?branch=flask-bootstrap-sqlite)](https://app.shippable.com/github/hunt3ri/flask-bootstrap/dashboard) 
+[![Coverage Badge](https://api.shippable.com/projects/5ce50c5c09683700079dafa0/coverageBadge?branch=flask-bootstrap-sqlite)](https://app.shippable.com/github/hunt3ri/flask-bootstrap/dashboard)
+Builds on the simple app in master, adds a SQLite DB, user registration and authorisation
 
 ## Installing
 ### Python 3.7+
