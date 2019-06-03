@@ -9,6 +9,7 @@ Currently we have two branches:
 Simple Flask App with Restful API documented by Swagger
 
 ### flask-bootstrap-sqlite
+
 [![Run Status](https://api.shippable.com/projects/5ce50c5c09683700079dafa0/badge?branch=flask-bootstrap-sqlite)](https://app.shippable.com/github/hunt3ri/flask-bootstrap/dashboard) 
 [![Coverage Badge](https://api.shippable.com/projects/5ce50c5c09683700079dafa0/coverageBadge?branch=flask-bootstrap-sqlite)](https://app.shippable.com/github/hunt3ri/flask-bootstrap/dashboard)
 
