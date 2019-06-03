@@ -34,7 +34,7 @@ class User(db.Model):
         """ Return user matching email or raise 404 """
         user = User.query.filter_by(email=email).first_or_404()
         return user
-    
+
     def get_by_id(self, id: int) -> "User":
         """ Return user matching id or raise 404 """
         user = User.query.filter_by(id=id).first_or_404()
