@@ -1,0 +1,13 @@
+# Creates image called flask_bootstrap
+# Runs dockerfile and maps uwsgi 8000 port to localhost 8080
+# You can see app running at http://localhost:8080/
+version: "3"
+
+services:
+  flask-bootstrap:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: flask_bootstrap
+    ports:
+      - "8080:8000"
