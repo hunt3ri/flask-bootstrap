@@ -1,6 +1,5 @@
-# Docker compose file that sets up environment:
 # Creates image called flask_bootstrap
-# Runs dockerfile and maps uwsgi 8000 part to localhost 8080
+# Runs dockerfile and maps uwsgi 8000 port to localhost 8080
 # You can see app running at http://localhost:8080/
 version: "3"
 
