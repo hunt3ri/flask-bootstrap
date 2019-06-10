@@ -5,6 +5,10 @@ language: python
 python:
     - "3.7"
 
+env:
+    global:
+        - secure: Umu4hmgkUjfERpE8FlsXasGKi7zrrzMQjDkR2WpN7CzBE/+BQBPwNoUgJLuGCTGp9jo+OnanHLakIYQbrsz/tfokA/1eQQUxEvLedT98myKaTP6b6g0SNgLdWbmIog8GwyTt6UPKErA7xh+k6Dvl4+JCDQ+HWRp2Mvb+BgT/Dv3ltV9ncAVqU/PK0lZNAmT/Ldt686CJYzjuwl1DLr3vkhjy41IejpCnpOTQ6dkaZdj51yl3JNxjJEy5QzwDat92rD3vL3aF6rkQTi6lY274nz9y0oOSBRRtiKJ5qKTltmgISn/gscYHkCOIcJV/hhi7T/32KUpoAhp7BQzkVEW+RQ==
+
 build:
     ci:
         # Required to display test results in Shippable GUI

@@ -12,9 +12,15 @@ fi
 VERSION=v.1.0.$BUILD_NUMBER-$BRANCH
 
 # Only deploy to Staging if we're on develop
-if [ $BRANCH == "develop" ]
+if [ $BRANCH == "flask-bootstrap-staging" ]
     then
-        echo Please add necessary deploy scripts here to deploy to staging environment
+        pip install awsebcli
+        printf '1\nn\n' | eb init flask-bootstrap --region us-east-1
+        eb use flask-bootstrap-staging
+
+        printf '\n\n'
+        echo $(date) Deploying $VERSION to flask-bootstrap-staging
+        eb deploy -l $VERSION-develop
 fi
 
 # Only deploy to Prod if we're on master
