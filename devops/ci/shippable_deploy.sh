@@ -14,7 +14,6 @@ VERSION=v.1.0.$BUILD_NUMBER-$BRANCH
 # Only deploy to Staging if we're on develop
 if [ $BRANCH == "flask-bootstrap-beanstalk" ]
     then
-        pip install awsebcli
         printf '1\nn\n' | eb init flask-bootstrap --region us-east-1
         eb use flask-bootstrap-staging
 
