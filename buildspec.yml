@@ -3,19 +3,24 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      python: 3.7
     commands:
       # Install required dependencies
       - echo Setting up build dependencies...
       - python --version
-#      - pip install --upgrade pip
-#      - pip install pipenv
-#      - pipenv install --dev
+      - pip install --upgrade pip
+      - pip install pipenv
+      - pipenv install --dev
   pre_build:
     commands:
       # Get docker creds so subsequent docker push command is authorized.  AWS CLI uses IAM creds associated with
       # the role assigned to the instances in the CodeBuild project
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      - echo Running Linter
+      - flake8 app
+      - flake8 tests
   build:
     commands:
       - echo Build started on `date`
