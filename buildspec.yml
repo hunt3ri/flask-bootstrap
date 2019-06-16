@@ -1,0 +1,42 @@
+# AWS CodeBuild buildspec.yml
+version: 0.2
+
+phases:
+  install:
+    commands:
+      # Install required dependencies
+      - echo Setting up build dependencies...
+      - python --version
+#      - pip install --upgrade pip
+#      - pip install pipenv
+#      - pipenv install --dev
+  pre_build:
+    commands:
+      # Get docker creds so subsequent docker push command is authorized.  AWS CLI uses IAM creds associated with
+      # the role assigned to the instances in the CodeBuild project
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t flask-bootstrap:latest .
+      # Tag the built docker image using the appropriate Amazon ECR endpoint and relevant
+      # repository for our service container. This ensures that when the docker push
+      # command is executed later, it will be pushed to the appropriate repository.
+      - docker tag flask-bootstrap:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/flask-bootstrap:latest
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image..
+      # Push the image to ECR.
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/flask-bootstrap:latest
+      - echo Completed pushing Docker image. Deploying Docker image to AWS Fargate on `date`
+      # Create a artifacts file that contains the name and location of the image
+      # pushed to ECR. This will be used by AWS CodePipeline to automate
+      # deployment of this specific container to Amazon ECS.
+      - printf '[{"name":"flask-bootstrap","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/flask-bootstrap:latest > imagedefinitions.json
+artifacts:
+  # Indicate that the created imagedefinitions.json file created on the previous
+  # line is to be referenceable as an artifact of the build execution job.
+  files: imagedefinitions.json
