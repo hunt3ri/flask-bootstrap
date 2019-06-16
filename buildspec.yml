@@ -11,7 +11,7 @@ phases:
       - python --version
       - pip install --upgrade pip
       - pip install pipenv
-      - pipenv install --system
+      - pipenv install --dev --system
   pre_build:
     commands:
       # Get docker creds so subsequent docker push command is authorized.  AWS CLI uses IAM creds associated with
