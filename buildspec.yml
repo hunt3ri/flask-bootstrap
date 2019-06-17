@@ -37,8 +37,8 @@ phases:
       # Push the image to ECR.
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/flask-bootstrap:latest
       - echo Completed pushing Docker image. Deploying Docker image to AWS Fargate on `date`
-      # Create a artifacts file that contains the name and location of the image
-      # pushed to ECR. This will be used by AWS CodePipeline to automate
+      # Create a artifacts file that contains the name and location of the image pushed to ECR. Note name
+      # is container name from **taskDefinition file**  This will be used by AWS CodePipeline to automate
       # deployment of this specific container to Amazon ECS.
       - printf '[{"name":"flask-bootstrap-staging-service","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/flask-bootstrap:latest > imagedefinitions.json
 artifacts:
