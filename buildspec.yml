@@ -44,8 +44,8 @@ phases:
 artifacts:
   # Indicate that the created imagedefinitions.json file created on the previous
   # line is to be referenceable as an artifact of the build execution job.
-  base-directory: '.'
   files:
     - imagedefinitions.json
-    - ./taskdef.json
-    - ./appspec.yml
+    - taskdef.json
+    - appspec.yml
+  discard-paths: yes
