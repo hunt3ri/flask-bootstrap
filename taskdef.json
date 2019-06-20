@@ -1,23 +1,23 @@
 {
-    "executionRoleArn": "arn:aws:iam::account_ID:role/ecsTaskExecutionRole",
-    "containerDefinitions": [
-        {
-            "name": "flask-bootstrap-staging-service",
-            "image": "<IMAGE1_NAME>",
-            "essential": true,
-            "portMappings": [
-                {
-                    "protocol": "tcp",
-                    "containerPort": 8000
-                }
-            ]
-        }
-    ],
-    "requiresCompatibilities": [
-        "FARGATE"
-    ],
-    "networkMode": "awsvpc",
-    "cpu": "256",
-    "memory": "512",
-    "family": "flask-bootstrap-staging"
+    "family": "tutorial-task-def",
+        "networkMode": "awsvpc",
+        "containerDefinitions": [
+            {
+                "name": "flask-bootstrap-staging-service",
+                "image": "<IMAGE1_NAME>",
+                "portMappings": [
+                    {
+                        "containerPort": 8000,
+                        "protocol": "tcp"
+                    }
+                ],
+                "essential": true,
+            }
+        ],
+        "requiresCompatibilities": [
+            "FARGATE"
+        ],
+        "cpu": "256",
+        "memory": "512",
+        "executionRoleArn": "aarn:aws:iam::account_ID:role/ecsTaskExecutionRole"
 }
