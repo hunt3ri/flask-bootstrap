@@ -41,7 +41,7 @@ phases:
       # is container name from **taskDefinition file**  This will be used by AWS CodePipeline to automate
       # deployment of this specific container to Amazon ECS.
       #- printf '[{"name":"flask-bootstrap-staging-service","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/flask-bootstrap:latest > imagedefinitions.json
-      - printf '{"ImageURI":"%s"}' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/flask-bootstrap:latest > imageDetail.json
+      - printf '{"ImageURI":"%s"}' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/flask-bootstrap@sha256:84b558320766122b0ed93011a9d6e69ea8e475f6c15cde4e73ca115105393077 > imageDetail.json
 artifacts:
   # Indicate that the created imagedefinitions.json file created on the previous
   # line is to be referenceable as an artifact of the build execution job.
