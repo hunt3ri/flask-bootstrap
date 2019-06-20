@@ -40,12 +40,13 @@ phases:
       # Create a artifacts file that contains the name and location of the image pushed to ECR. Note name
       # is container name from **taskDefinition file**  This will be used by AWS CodePipeline to automate
       # deployment of this specific container to Amazon ECS.
-      - printf '[{"name":"flask-bootstrap-staging-service","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/flask-bootstrap:latest > imagedefinitions.json
+      - printf '[{"name":"flask-bootstrap-staging-service","imageURI":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/flask-bootstrap:latest > imagedefinitions.json
+      - printf '[{"imageURI":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/flask-bootstrap:latest > imageDetail.json
 artifacts:
   # Indicate that the created imagedefinitions.json file created on the previous
   # line is to be referenceable as an artifact of the build execution job.
   files:
     - imagedefinitions.json
-    - taskdef.json
+    - imageDetail.json
     - appspec.yml
   discard-paths: yes
