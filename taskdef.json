@@ -1,5 +1,5 @@
 {
-    "family": "tutorial-task-def",
+    "family": "flask-bootstrap-staging",
         "networkMode": "awsvpc",
         "containerDefinitions": [
             {
@@ -11,7 +11,7 @@
                         "protocol": "tcp"
                     }
                 ],
-                "essential": true,
+                "essential": true
             }
         ],
         "requiresCompatibilities": [
