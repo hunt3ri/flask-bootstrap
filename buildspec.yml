@@ -48,6 +48,7 @@ artifacts:
   files:
     - appspec.yaml
     - taskdef.json
+    - imageDetail.json
   secondary-artifacts:
     DefinitionArtifact:
       files:
