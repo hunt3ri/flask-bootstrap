@@ -1,0 +1,10 @@
+version: 1.0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: <TASK_DEFINITION>
+        LoadBalancerInfo:
+          ContainerName: "flask-bootstrap-staging-service"
+          ContainerPort: 8000
+        PlatformVersion: "LATEST"

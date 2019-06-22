@@ -1,0 +1,33 @@
+{
+  "family": "flask-bootstrap-staging",
+  "networkMode": "awsvpc",
+  "containerDefinitions": [
+    {
+      "name": "flask-bootstrap-staging-service",
+      "image": "<IMAGE1_NAME>",
+      "portMappings": [
+        {
+          "hostPort": 8000,
+          "containerPort": 8000,
+          "protocol": "tcp"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "flask-bootstrap-cluster-logs-staging",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "awslogs-flask-bootstrap-staging-service"
+        }
+      },
+      "essential": true
+    }
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "256",
+  "memory": "512",
+  "taskRoleArn": "arn:aws:iam::222866594907:role/ECSTaskRole",
+  "executionRoleArn": "arn:aws:iam::222866594907:role/EcsServiceRole"
+}

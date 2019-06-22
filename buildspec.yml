@@ -9,15 +9,18 @@ phases:
       # Install required dependencies
       - echo Setting up build dependencies...
       - python --version
-#      - pip install --upgrade pip
-#      - pip install pipenv
-#      - pipenv install --dev
+      - pip install --upgrade pip
+      - pip install pipenv
+      - pipenv install --dev --system
   pre_build:
     commands:
       # Get docker creds so subsequent docker push command is authorized.  AWS CLI uses IAM creds associated with
       # the role assigned to the instances in the CodeBuild project
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      - echo Running Linter
+      - flake8 app
+      - flake8 tests
   build:
     commands:
       - echo Build started on `date`
@@ -34,11 +37,16 @@ phases:
       # Push the image to ECR.
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/flask-bootstrap:latest
       - echo Completed pushing Docker image. Deploying Docker image to AWS Fargate on `date`
-      # Create a artifacts file that contains the name and location of the image
-      # pushed to ECR. This will be used by AWS CodePipeline to automate
+      # Create a artifacts file that contains the name and location of the image pushed to ECR. Note name
+      # is container name from **taskDefinition file**  This will be used by AWS CodePipeline to automate
       # deployment of this specific container to Amazon ECS.
-      - printf '[{"name":"flask-bootstrap","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/flask-bootstrap:latest > imagedefinitions.json
+      - printf '[{"name":"flask-bootstrap-staging-service","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/flask-bootstrap:latest > imagedefinitions.json
+      - printf '{"ImageURI":"%s"}' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/flask-bootstrap:latest > imageDetail.json
 artifacts:
   # Indicate that the created imagedefinitions.json file created on the previous
   # line is to be referenceable as an artifact of the build execution job.
-  files: imagedefinitions.json
+  files:
+    - appspec.yaml
+    - taskdef.json
+    - imageDetail.json
+    - imagedefinitions.json
