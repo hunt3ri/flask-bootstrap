@@ -10,6 +10,7 @@ services:
     image: flask_bootstrap
     expose:
       - 8000
+    restart: always
   # Can map port 80 directly to 80 on remote server if needed
   nginx:
     build: ./nginx
