@@ -7,6 +7,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - FLASK-BOOTSTRAP=Prod
     image: flask_bootstrap
     expose:
       - 8000
