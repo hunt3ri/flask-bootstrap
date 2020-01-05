@@ -11,6 +11,8 @@ services:
     expose:
       - 8000
     restart: always
+    volumes:
+      - "/var/log/flask_bootstrap:/var/log/flask_bootstrap"
   # Can map port 80 directly to 80 on remote server if needed
   nginx:
     build: ./nginx
@@ -19,3 +21,5 @@ services:
     depends_on:
       - flask-bootstrap
     restart: always
+    volumes:
+      - "/var/log/nginx:/var/log/nginx"

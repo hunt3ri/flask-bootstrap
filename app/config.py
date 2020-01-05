@@ -10,7 +10,7 @@ class EnvironmentConfig:
 class ProdConfig(EnvironmentConfig):
     """ Config for Production environment """
 
-    LOG_DIR = "/var/log/mapfish-py"
+    LOG_DIR = "/var/log/flask_bootstrap"
 
 
 class DevConfig(EnvironmentConfig):
