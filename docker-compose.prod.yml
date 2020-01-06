@@ -1,0 +1,27 @@
+# Production docker-compose file that runs the app using nginx as a reverse proxy
+# You can see app running at http://localhost:1337
+version: "3"
+
+services:
+  flask-bootstrap:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - FLASK_BOOTSTRAP=Prod
+    image: flask_bootstrap
+    expose:
+      - 8000
+    restart: always
+    volumes:
+      - "/var/log/flask_bootstrap:/var/log/flask_bootstrap"
+  # Can map port 80 directly to 80 on remote server if needed
+  nginx:
+    build: ./nginx
+    ports:
+      - 1337:80
+    depends_on:
+      - flask-bootstrap
+    restart: always
+    volumes:
+      - "/var/log/nginx:/var/log/nginx"

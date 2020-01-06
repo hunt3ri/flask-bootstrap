@@ -8,7 +8,7 @@ from flask import Flask
 from flask_cors import CORS
 
 # Update with app specific versions as needed
-APP_NAME = "FLASK-BOOTSTRAP"
+APP_NAME = "FLASK_BOOTSTRAP"
 APP_VERSION = "v1"
 
 # Init dependencies
