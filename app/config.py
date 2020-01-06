@@ -18,13 +18,13 @@ class EnvironmentConfig:
 class ProdConfig(EnvironmentConfig):
     """ Config for Production environment """
 
-    LOG_DIR = "/var/log/flask-bootstrap"
+    LOG_DIR = "/var/log/flask_bootstrap"
 
 
 class TestConfig(EnvironmentConfig):
     """ Config for unit testing """
 
-    LOG_DIR = "logs"
+    LOG_DIR = "/var/log/flask_bootstrap"
     SECRET_KEY = "forTestingOnly"
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         "DATABASE_URL"
