@@ -15,11 +15,12 @@ services:
     restart: always
     volumes:
       - "/var/log/flask_bootstrap:/var/log/flask_bootstrap"
-  # Can map port 80 directly to 80 on remote server if needed
+  # Running on port 80 locally may make debugging painful and it may be easier using a separate port, eg 1337:80
+  # we would have a .local docker-compose file which also removed restart always
   nginx:
     build: ./nginx
     ports:
-      - 1337:80
+      - 80:80
     depends_on:
       - flask-bootstrap
     restart: always
