@@ -65,12 +65,14 @@ Flask-Bootstrap can be built and run from within a Docker container:
 docker-compose up
 ```
 
+You should see the app running locally on port 8080 - [http://127.0.0.1:8080](http://127.0.0.1:8080)
+
 To build the production version which includes a nginx sidecar run the following:
 ```docker
 docker-compose -f docker-compose.prod.yml up -d --build
 ```
 
-You should see the app running locally on port 8080 - [http://127.0.0.1:8080](http://127.0.0.1:8080)
+Production build runs on port 80, so can be smoketested on [http://127.0.0.1:80](http://127.0.0.1:80)
 
 ### Useful commands:
 
