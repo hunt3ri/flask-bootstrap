@@ -18,8 +18,8 @@ Builds on the simple app in master, adds a SQLite DB, with user registration and
 JSON parsing and validating is handled by [Schematics](https://schematics.readthedocs.io/en/latest/) ORM is [SqlAlchemy](https://www.sqlalchemy.org/). DB migrations handled by [Flask-Migrate](https://flask-migrate.readthedocs.io/en/latest/).  Authorisation handled by [Flask-HTTPAuth](https://flask-httpauth.readthedocs.io/en/latest/) and [PyJWT](https://pyjwt.readthedocs.io/en/latest/)
 
 ## Installing
-### Python 3.7+
-You need to have at least Python 3.7 installed in your development environment.
+### Python 3.8+
+You need to have at least Python 3.8 installed in your development environment.
 
 ### Dependencies 
 To install the required dependencies:
