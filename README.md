@@ -5,8 +5,8 @@
 This repo contains a skeleton flask project you can use to quickly bootstrap your projects. It's designed to be easily deployed to serverless environments or container clusters (see DevOps below)
 
 ## Installing
-### Python 3.7+
-You need to have at least Python 3.7 installed in your development environment.
+### Python 3.8+
+You need to have at least Python 3.8 installed in your development environment.
 
 ### Dependencies 
 To install the required dependencies:
