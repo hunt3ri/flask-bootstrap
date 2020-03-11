@@ -3,7 +3,7 @@ language: python
 
 # version numbers test
 python:
-    - "3.8"
+    - "3.7"
 
 build:
     ci:
