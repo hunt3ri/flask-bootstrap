@@ -6,4 +6,6 @@ jobs:
       - image: circleci/python:3.8
     steps:
       - checkout
-      - run: echo "Hello World"
+      - run:
+          name: Python Version
+          command: python --version
