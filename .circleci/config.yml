@@ -16,3 +16,8 @@ jobs:
             pip install --upgrade pip
             pip install pipenv
             pipenv install --dev
+      - run:
+          name: Run Linter
+          command: |
+            flake8 app
+            flake8 tests
