@@ -8,4 +8,5 @@ jobs:
       - checkout
       - run:
           name: Python Version
-          command: python --version
+          command: |
+            python --version
