@@ -10,3 +10,9 @@ jobs:
           name: Python Version
           command: |
             python --version
+      - run:
+          name: Install Python Dependencies
+          command: |
+            pip install --upgrade pip
+            pip install pipenv
+            pipenv install --dev
