@@ -27,5 +27,5 @@ jobs:
             pytest ./tests --junitxml=./cicleci/testresults/flask_bootstrap.xml --cov=app --cov-report xml:./cicleci/codecoverage/coverage.xml
       - store_test_results:
           path: ./cicleci
-      - store_artifacts:
-          path: ./cicleci/codecoverage
+#      - store_artifacts:
+#          path: ./cicleci/codecoverage
