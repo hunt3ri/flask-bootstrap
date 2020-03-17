@@ -21,3 +21,9 @@ jobs:
           command: |
             flake8 app
             flake8 tests
+  test:
+    steps:
+      - run:
+          name: Run Pytest
+          command: |
+            echo "Hello tests"
