@@ -15,7 +15,7 @@ jobs:
           command: |
             pip install --upgrade pip
             pip install pipenv
-            pipenv install --dev
+            pipenv install --dev --system
       - run:
           name: Run Linter
           command: |
