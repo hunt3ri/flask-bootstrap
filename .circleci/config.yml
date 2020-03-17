@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Run Pytest
           command: |
-            pytest ./tests --junitxml=./cicleci/testresults/flask_bootstrap.xml --cov=app --cov-report xml:./cicleci/codecoverage/coverage.xml
+            pytest ./tests --junitxml=./cicleci/testresults/flask_bootstrap.xml --cov=app --cov-report html:./cicleci/codecoverage/coverage.html
       - store_artifacts:
           path: ./cicleci/codecoverage
       - store_test_results:
