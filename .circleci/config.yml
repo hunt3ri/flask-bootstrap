@@ -25,8 +25,8 @@ jobs:
           name: Run Pytest
           command: |
             pytest ./tests --junitxml=./shippable/testresults/flask_bootstrap.xml --cov=app --cov-report xml:./shippable/codecoverage/coverage.xml
-        - store_test_results:
-            path: ~/pytest
+      - store_test_results:
+          path: ~/pytest
 #  test:
 #    docker:
 #      - image: circleci/python:3.8
