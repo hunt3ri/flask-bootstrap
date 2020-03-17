@@ -28,7 +28,10 @@ jobs:
       - run:
           name: Run Pytest
           command: |
-            echo "Hello tests"
+            pytest ./tests --junitxml=./shippable/testresults/flask_bootstrap.xml --cov=app --cov-report xml:./shippable/codecoverage/coverage.xml
+      - store_test_results:
+          path: ~/pytest
+
 
 workflows:
   version: 2
