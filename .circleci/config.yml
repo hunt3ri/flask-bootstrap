@@ -29,3 +29,22 @@ jobs:
           path: ./coverage/flask-bootstrap
       - store_test_results:
           path: ./cicleci
+
+  deploy:
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - run:
+          name: Deploy image
+          command: |
+            echo TODO
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - hold: # <<< A job that will require manual approval in the CircleCI web application.
+          type: approval # <<< This key-value pair will set your workflow to a status of "On Hold"
+          requires: # We only run the "hold" job when test2 has succeeded
+            - build
