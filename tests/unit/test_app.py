@@ -3,4 +3,4 @@ class TestApp:
         """ Test to demonstrate flask app is instantiated correctly """
         logdir = app.config["LOG_DIR"]
 
-        assert logdir == "logs"
+        assert logdir == "logsdd"
