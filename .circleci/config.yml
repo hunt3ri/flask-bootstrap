@@ -1,0 +1,57 @@
+version: 2.1
+
+jobs:
+  # Build step checks out code, downloads dependencies, lints and finally runs tests
+  # Note artifacts are available in circleci dashboard
+  build:
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - checkout
+      - run:
+          name: Python Version
+          command: |
+            python --version
+      - run:
+          name: Install Python Dependencies
+          command: |
+            pip install --upgrade pip
+            pip install pipenv
+            pipenv install --dev --system
+      - run:
+          name: Run Linter
+          command: |
+            flake8 app
+            flake8 tests
+      - run:
+          name: Run Pytest
+          command: |
+            pytest ./tests --junitxml=./cicleci/testresults/flask_bootstrap.xml --cov=app --cov-report html:./coverage/flask-bootstrap
+      - store_artifacts:
+          path: ./coverage/flask-bootstrap
+      - store_test_results:
+          path: ./cicleci
+
+  # Placeholder for deploy could call shell script to deploy to aws etc
+  deploy:
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - run:
+          name: Deploy image
+          command: |
+            echo TODO
+
+# Workflow does build and then has a manual approval to do the deploy.
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - hold:
+          type: approval
+          requires: # We only run the "hold" job when build succeeds
+            - build
+      - deploy:
+          requires:
+            - hold
