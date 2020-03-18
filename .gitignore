@@ -4,7 +4,7 @@ logs
 flask_bootstrap.db
 
 # Buiild artifacts
-shippable/
+circleci/
 
 # Python artifacts
 __pycache__
