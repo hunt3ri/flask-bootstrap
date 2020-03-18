@@ -26,11 +26,12 @@ jobs:
       - run:
           name: Run Pytest
           command: |
-            pytest ./tests --junitxml=./cicleci/testresults/flask_bootstrap.xml --cov=app --cov-report html:./coverage/flask-bootstrap
+            pytest ./tests --junitxml=./cicleci/test_results/flask_bootstrap.xml --cov=app --cov-report html:./circleci/coverage/flask-bootstrap
+            coverage-badge -o ./circleci/coverage/flask-bootstrap-coverage.svg
       - store_artifacts:
-          path: ./coverage/flask-bootstrap
+          path: ./cicleci/coverage/flask-bootstrap
       - store_test_results:
-          path: ./cicleci
+          path: ./cicleci/test_results
 
   # Placeholder for deploy could call shell script to deploy to aws etc
   deploy:
