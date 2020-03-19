@@ -27,6 +27,7 @@ jobs:
           name: Run Pytest
           command: |
             pytest ./tests --junitxml=./circleci/test_results/flask_bootstrap.xml --cov=app --cov-report html:./circleci/coverage/flask-bootstrap
+            mkdir ./circleci/coverage/badge
             coverage-badge -o ./circleci/coverage/badge/flask-bootstrap-coverage.svg
       - store_artifacts:
           path: ./circleci/coverage/flask-bootstrap
