@@ -10,10 +10,10 @@ ADD . /src
 # Add and install Python modules.  Note additional uwsgi install, required to make app windows compatible
 RUN pip install --upgrade pip
 RUN pip install pipenv; pip install uwsgi
-RUN pipenv install --system
+RUN pipenv install --system --dev
 
 # Expose
-EXPOSE 8000
+EXPOSE 8000 5000
 
 # uWSGI used to serve Flask app, configuration loaded from ini file
 CMD uwsgi --ini uwsgi.ini
