@@ -1,5 +1,6 @@
 # Application
 .env
+.env-postgres
 logs
 flask_bootstrap.db
 
