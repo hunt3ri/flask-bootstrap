@@ -9,7 +9,7 @@ class User(db.Model):
 
     __tablename__ = "users"
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.BigInteger().with_variant(db.Integer, "sqlite"), primary_key=True)
     first_name = db.Column(db.String(50))
     last_name = db.Column(db.String(100))
     email = db.Column(db.String(120), index=True, unique=True)

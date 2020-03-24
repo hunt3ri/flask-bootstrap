@@ -21,6 +21,7 @@ flask-migrate = "*"
 schematics = "*"
 flask-httpauth = "*"
 pyjwt = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.8"
