@@ -2,7 +2,7 @@ version: 2.1
 
 jobs:
   # Build step checks out code, downloads dependencies, lints and finally runs tests
-  # Note artifacts are available in circleci dashboard
+  # Note artifacts are available in circleci dashboard.
   build:
     docker:
       - image: circleci/python:3.8
