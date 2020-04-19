@@ -43,10 +43,18 @@ def bootstrap_app(env: str = None) -> Flask:
     return app
 
 
+def set_prod_vars_from_aws():
+    """ Set OS Env Vars from Parameter Store """
+    pass
+
+
 def set_config(app: Flask, env: str):
     """ Sets the config for the current environment """
     if env is None:
         env = get_current_environment()
+        if env == "Prod":
+            set_prod_vars_from_aws()
+
     app.config.from_object("app.config.{0}Config".format(env))
 
 
