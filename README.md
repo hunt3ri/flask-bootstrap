@@ -86,6 +86,8 @@ Production build runs on port 80, so can be smoketested on [http://127.0.0.1:80]
 ```.docker
 # Connect to the running container
 docker exec -it <imageId> bash
+# Rebuild the container
+docker-compose build
 ```
 
 ### CI

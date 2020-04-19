@@ -1,3 +1,4 @@
+import boto3
 import logging
 import os
 
@@ -45,7 +46,24 @@ def bootstrap_app(env: str = None) -> Flask:
 
 def set_prod_vars_from_aws():
     """ Set OS Env Vars from Parameter Store """
-    pass
+    session = boto3.Session(
+        aws_access_key_id=os.getenv("AWS_ACCESS_KEY"),
+        aws_secret_access_key=os.getenv("AWS_SECRET_KEY"),
+        region_name="us-east-1",
+    )
+    client = session.client("ssm")
+
+    # Set Flask Secret
+    response = client.get_parameter(
+        Name="flask_bootstrap.flask_secret", WithDecryption=True
+    )
+    os.environ["FLASK_SECRET"] = response["Parameter"]["Value"]
+
+    # Set Database URL
+
+    # iain = response["Parameter"]["Value"]
+
+    # return response["Parameter"]["Value"]
 
 
 def set_config(app: Flask, env: str):
