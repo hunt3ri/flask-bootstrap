@@ -8,7 +8,7 @@ services:
       context: .
       dockerfile: Dockerfile
     env_file:
-      - prod_vars.env
+      - flask_bootstrap.env
     image: flask_bootstrap
     expose:
       - 8000
