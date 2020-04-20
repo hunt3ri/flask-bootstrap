@@ -59,11 +59,11 @@ def set_prod_vars_from_aws():
     )
     os.environ["FLASK_SECRET"] = response["Parameter"]["Value"]
 
-    # Set Database URL
-
-    # iain = response["Parameter"]["Value"]
-
-    # return response["Parameter"]["Value"]
+    # Set DB Connection
+    response = client.get_parameter(
+        Name="flask_bootstrap.db_connection", WithDecryption=True
+    )
+    os.environ["APP_DATABASE_URL"] = response["Parameter"]["Value"]
 
 
 def set_config(app: Flask, env: str):

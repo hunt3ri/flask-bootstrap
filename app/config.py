@@ -10,7 +10,7 @@ class EnvironmentConfig:
     LOG_LEVEL = logging.DEBUG
     SECRET_KEY = os.getenv("FLASK_SECRET")  # Used to generate entropy in tokens etc
     SQLALCHEMY_DATABASE_URI = os.environ.get(
-        "DEV_DATABASE_URL"
+        "APP_DATABASE_URL"
     ) or "sqlite:///" + os.path.join(basedir, "flask_bootstrap.db")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
