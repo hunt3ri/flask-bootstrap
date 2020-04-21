@@ -1,3 +1,4 @@
+import boto3
 import logging
 import os
 
@@ -43,10 +44,37 @@ def bootstrap_app(env: str = None) -> Flask:
     return app
 
 
+def set_prod_vars_from_aws():
+    """ Set OS Env Vars from Parameter Store """
+    session = boto3.Session(
+        aws_access_key_id=os.getenv("AWS_ACCESS_KEY"),
+        aws_secret_access_key=os.getenv("AWS_SECRET_KEY"),
+        region_name=os.getenv("AWS_REGION", "us-east-1"),
+    )
+    client = session.client("ssm")
+
+    # Set Flask Secret
+    response = client.get_parameter(
+        Name="flask_bootstrap.flask_secret", WithDecryption=True
+    )
+    os.environ["FLASK_SECRET"] = response["Parameter"]["Value"]
+
+    # Set DB Connection
+    response = client.get_parameter(
+        Name="flask_bootstrap.db_connection", WithDecryption=True
+    )
+    os.environ["APP_DATABASE_URL"] = response["Parameter"]["Value"]
+
+
 def set_config(app: Flask, env: str):
     """ Sets the config for the current environment """
     if env is None:
         env = get_current_environment()
+
+        # In Prod environment we want to load env vars from AWS
+        if env == "Prod":
+            set_prod_vars_from_aws()
+
     app.config.from_object("app.config.{0}Config".format(env))
 
 

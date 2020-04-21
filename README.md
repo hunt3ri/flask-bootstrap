@@ -33,6 +33,9 @@ Flask-Bootstrap installs [python-dotenv](https://github.com/theskumar/python-dot
 
 Ensure you set the following (showing sample values):
 ```
+AWS_ACCESS_KEY=awsaccess
+AWS_SECRET_KEY=awsSecret
+AWS_REGION=us-east-2 [Defaults to us-east-1]
 FLASK_SECRET=secretkeyhere [Creates Entropy for tokens etc]
 ````   
 
@@ -86,6 +89,8 @@ Production build runs on port 80, so can be smoketested on [http://127.0.0.1:80]
 ```.docker
 # Connect to the running container
 docker exec -it <imageId> bash
+# Rebuild the container
+docker-compose build
 ```
 
 ### CI
