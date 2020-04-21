@@ -70,6 +70,8 @@ def set_config(app: Flask, env: str):
     """ Sets the config for the current environment """
     if env is None:
         env = get_current_environment()
+
+        # In Prod environment we want to load env vars from AWS
         if env == "Prod":
             set_prod_vars_from_aws()
 
