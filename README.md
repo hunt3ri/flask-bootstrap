@@ -33,6 +33,9 @@ Flask-Bootstrap installs [python-dotenv](https://github.com/theskumar/python-dot
 
 Ensure you set the following (showing sample values):
 ```
+AWS_ACCESS_KEY=awsaccess
+AWS_SECRET_KEY=awsSecret
+AWS_REGION=us-east-2 [Defaults to us-east-1]
 FLASK_SECRET=secretkeyhere [Creates Entropy for tokens etc]
 ````   
 
