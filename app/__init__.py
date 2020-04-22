@@ -1,6 +1,7 @@
 import boto3
 import logging
 import os
+import time
 
 from logging.handlers import RotatingFileHandler
 
@@ -53,17 +54,27 @@ def set_prod_vars_from_aws():
     )
     client = session.client("ssm")
 
+    # Set DB Connection.  Param may not be immediately available so loop until it is.
+    while True:
+        try:
+            response = client.get_parameter(
+                Name="flask_bootstrap.db_connection", WithDecryption=True
+            )
+            if response["Parameter"]["Value"]:
+                os.environ["APP_DATABASE_URL"] = response["Parameter"]["Value"]
+                break
+        except Exception:
+            print(
+                "APP_DATABASE_URL Param not found, sleeping for 10 seconds and trying again"
+            )
+            time.sleep(10)
+            pass
+
     # Set Flask Secret
     response = client.get_parameter(
         Name="flask_bootstrap.flask_secret", WithDecryption=True
     )
     os.environ["FLASK_SECRET"] = response["Parameter"]["Value"]
-
-    # Set DB Connection
-    response = client.get_parameter(
-        Name="flask_bootstrap.db_connection", WithDecryption=True
-    )
-    os.environ["APP_DATABASE_URL"] = response["Parameter"]["Value"]
 
 
 def set_config(app: Flask, env: str):
