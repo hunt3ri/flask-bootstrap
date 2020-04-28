@@ -6,10 +6,9 @@ Currently we have two branches:
 
 Simple Flask App with Restful API documented by [Swagger](https://github.com/rochacbruno/flasgger)
 
-### flask-bootstrap-sqlite
+### flask-bootstrap-postgres
 
-
-Builds on the simple app in master, adds a SQLite DB, with user registration and authorisation.
+Builds on the simple app in master, adds a Postgres DB, with user registration and authorisation.
   
 JSON parsing and validating is handled by [Schematics](https://schematics.readthedocs.io/en/latest/) ORM is [SqlAlchemy](https://www.sqlalchemy.org/). DB migrations handled by [Flask-Migrate](https://flask-migrate.readthedocs.io/en/latest/).  Authorisation handled by [Flask-HTTPAuth](https://flask-httpauth.readthedocs.io/en/latest/) and [PyJWT](https://pyjwt.readthedocs.io/en/latest/)
 
@@ -97,4 +96,4 @@ docker-compose build
 Flask-Bootstrap CI is run by [Shippable](https://www.shippable.com/). New CI scripts can be added within the ```devops``` dir
 
 ## Thanks
-This work in this repo has been influenced by Miguel Grinberg, if you are learning flask check out his [Mega Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
+The work in this repo has been influenced by Miguel Grinberg, if you are learning flask check out his [Mega Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
